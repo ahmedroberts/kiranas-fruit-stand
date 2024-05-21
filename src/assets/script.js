@@ -1,22 +1,32 @@
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
-
+const products = [
+  {"name": "Orange san", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/orange.jpg"},
+  {"name": "Strawberry san", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/strawberry.jpg"},
+  {"name": "Cherry san", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/cherry.jpg"}
+];
 /* Create 3 or more product objects using object literal notation 
-   Each product should include five properties
-   - name: name of product (string)
-   - price: price of product (number)
-   - quantity: quantity in cart should start at zero (number)
-   - productId: unique id for the product (number)
-   - image: picture of product (url string)
+Each product should include five properties
+- name: name of product (string)
+- price: price of product (number)
+- quantity: quantity in cart should start at zero (number)
+- productId: unique id for the product (number)
+- image: picture of product (url string)
 */
+const allAvailableProducts = [
+  {"name": "3rd Raikage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/strawberry.jpg"},
+  {"name": "2nd Raikage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/orange.jpg"},
+  {"name": "1st Raikage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/cherry.jpg"}
+];
+
 
 /* Images provided in /images folder. All images from Unsplash.com
-   - cherry.jpg by Mae Mu
-   - orange.jpg by Mae Mu
-   - strawberry.jpg by Allec Gomes
+- cherry.jpg by Mae Mu
+- orange.jpg by Mae Mu
+- strawberry.jpg by Allec Gomes
 */
 
 /* Declare an empty array named cart to hold the items in the cart */
-
+const cart = [{"name": "Cherry Kage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/cherry.jpg"}];
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
