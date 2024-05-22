@@ -1,8 +1,13 @@
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
+
+
+
 const products = [
-  {"name": "Orange san", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/orange.jpg"},
-  {"name": "Strawberry san", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/strawberry.jpg"},
-  {"name": "Cherry san", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/cherry.jpg"}
+  {name: "Orange san", price: 9.99, quantity: 9, productId: 99999, image: "../images/orange.jpg"},
+  /*
+  {name: "Strawberry san", price: 9.99, quantity: 9, productId: 99999, image: "../images/strawberry.jpg"},
+  {name: "Cherry san", price: 9.99, quantity: 9, productId: 99999, image: "../images/cherry.jpg"},
+  */
 ];
 
 /* Create 3 or more product objects using object literal notation 
@@ -13,11 +18,50 @@ const products = [
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
-const allAvailableProducts = [
-  {"name": "3rd Raikage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/strawberry.jpg"},
-  {"name": "2nd Raikage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/orange.jpg"},
-  {"name": "1st Raikage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/cherry.jpg"}
+
+const allAvailableProductsDB = [
+  {name: "3rd Raikage", price: 9.99, quantity: 9, productId: 99999, image: "../images/strawberry.jpg"},
+  {name: "2nd Raikage", price: 9.99, quantity: 9, productId: 99999, image: "../images/orange.jpg"},
+  {name: "1st Raikage", price: 9.99, quantity: 9, productId: 99999, image: "../images/cherry.jpg"},
 ];
+
+function listAll(listingArrayDB) {
+  for (const key in listingArrayDB) {
+    if (Object.hasOwnProperty.call(listingArrayDB, key)) {
+      const element = listingArrayDB[key];
+      console.log(element)
+    }
+  }
+}
+
+listAll(allAvailableProductsDB);
+
+function addProductToCart(){
+  alert('add Product to Cart pressed');
+  return 'Ahmed  The Raikage, has added a product.';
+}
+function increaseQuantity(){
+  confirm('increase Quantity has been pressed');
+  return 'Kazam ask and it shall be given';
+}
+function decreaseQuantity(){
+  prompt('Who Goes There?!!');
+  return 'Tanke it down a peg.';
+}
+function removeProductFromCart(){
+  return 'Snap it is gone product.';
+}
+function cartTotal(){
+  alert('CART TOTAL Engaged')
+  return 'Raikage has given a total.';
+}
+function pay(){
+  return 'Money from Kongakure.';
+}
+function emptyCart(){
+  return 'Ahmed has emptied the cart.';
+}
+
 
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
@@ -26,7 +70,7 @@ const allAvailableProducts = [
 */
 
 /* Declare an empty array named cart to hold the items in the cart */
-const cart = [{"name": "Cherry Kage", "price": 9.99, "quantity": 9, "productId": 99999, "image": "../images/cherry.jpg"}];
+const cart = [{name: "Cherry Kage", price: 9.99, quantity: 9, productId: 99999, image: "../images/cherry.jpg"}];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -74,6 +118,13 @@ const cart = [{"name": "Cherry Kage", "price": 9.99, "quantity": 9, "productId":
    Run the following command in terminal to run tests
    npm run test
 */
+
+if (typeof module === 'object') {
+  module.exports = functions;
+}
+
+const zzzz = (typeof module.exports);
+console.log('zzzz is : ' + zzzz);
 
 module.exports = {
    products,
