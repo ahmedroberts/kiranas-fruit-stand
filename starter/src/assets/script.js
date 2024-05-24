@@ -3,11 +3,9 @@
 
 
 const products = [
-  {name: "Orange san", price: 9.99, quantity: 9, productId: 99999, image: "../images/orange.jpg"},
-  /*
-  {name: "Strawberry san", price: 9.99, quantity: 9, productId: 99999, image: "../images/strawberry.jpg"},
-  {name: "Cherry san", price: 9.99, quantity: 9, productId: 99999, image: "../images/cherry.jpg"},
-  */
+  {name: "Orange san", price: 9.99, quantity: 9, productId: 1, image: "../images/orange.jpg"},
+  {name: "Strawberry san", price: 9.99, quantity: 9, productId: 2, image: "../images/strawberry.jpg"},
+  {name: "Cherry san", price: 9.99, quantity: 9, productId: 3, image: "../images/cherry.jpg"},
 ];
 
 /* Create 3 or more product objects using object literal notation 
@@ -26,6 +24,7 @@ const allAvailableProductsDB = [
 ];
 
 function listAll(listingArrayDB) {
+  console.log('\n\t\t~~ Listing for the Raikage ~~\n' + this.Object + '\n')
   for (const key in listingArrayDB) {
     if (Object.hasOwnProperty.call(listingArrayDB, key)) {
       const element = listingArrayDB[key];
