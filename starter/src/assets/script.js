@@ -32,10 +32,6 @@ function removeProductFromCart(){
   return 'Snap it is gone product.';
 }
 
-function pay(){
-  return 'Money from Kongakure.';
-}
-
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
    - orange.jpg by Mae Mu
@@ -135,6 +131,10 @@ function emptyCart(){
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
 */
+function pay(amount){
+  let balance = amount - cartTotal();
+  return balance;
+}
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
