@@ -13,9 +13,9 @@ const products = [];
 */
 
 const allAvailableProductsDB = [
-  {name: "3rd Raikage", price: 9.99, quantity: 9, productId: 1, image: "../images/strawberry.jpg"},
-  {name: "2nd Raikage", price: 9.99, quantity: 9, productId: 2, image: "../images/orange.jpg"},
-  {name: "1st Raikage", price: 9.99, quantity: 9, productId: 3, image: "../images/cherry.jpg"},
+  {name: "3rd Raikage", price: 9.99, quantity: 1, productId: 1, image: "../images/strawberry.jpg"},
+  {name: "2nd Raikage", price: 9.99, quantity: 1, productId: 2, image: "../images/orange.jpg"},
+  {name: "1st Raikage", price: 9.99, quantity: 1, productId: 3, image: "../images/cherry.jpg"},
 ];
 
 // add all products and quantities to cart and products
@@ -24,14 +24,9 @@ allAvailableProductsDB.forEach(availabeProduct => {
 })
 
 
-function addProductToCart(){
-  // alert('add Product to Cart pressed');
-  console.log('add Product to Cart pressed');
-  return 'Ahmed  The Raikage, has added a product.';
-}
 function increaseQuantity(){
   // confirm('increase Quantity has been pressed');
-  return 'Kazam ask and it shall be given';
+  return 'Kaazam ask and it shall be given';
 }
 function decreaseQuantity(){
   // prompt('Who Goes There?!!');
@@ -40,21 +35,10 @@ function decreaseQuantity(){
 function removeProductFromCart(){
   return 'Snap it is gone product.';
 }
-function cartTotal(){
-  // alert('CART TOTAL Engaged')
-  let totalCartAmount = 0;
-  cart.forEach(itemInCart => {
-    totalCartAmount += itemInCart.price * itemInCart.quantity;
-  })
-  return totalCartAmount;
-}
+
 function pay(){
   return 'Money from Kongakure.';
 }
-function emptyCart(){
-  return 'Ahmed has emptied the cart.';
-}
-
 
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
@@ -64,13 +48,44 @@ function emptyCart(){
 
 /* Declare an empty array named cart to hold the items in the cart */
 const cart = [];
-cart.push({name: "Cherry Kage test", price: 9.99, quantity: 2, productId: 99999, image: "../images/cherry.jpg"});
+// cart.push({name: "Cherry Kage test", price: 9.99, quantity: 2, productId: 99999, image: "../images/cherry.jpg"}); // for testing DELETE FOR AHMED
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
+
+// utility to find an individual product in products
+const getProduct = (productId) => {
+  let foundProduct;
+  products.forEach(product => {
+    if (product.productId === productId) {
+    foundProduct = product;
+  }
+});
+  return foundProduct;
+}
+
+function addProductToCart(productId){
+  let foundProduct = getProduct(productId);
+  let productIndex = cart.indexOf(foundProduct);
+  console.log('1st productIndex ~~> ' + productIndex);
+  // productIndex = -1;
+  console.log('Forced productIndex ==> ' + productIndex);
+  console.log('pressed addPTC...' + foundProduct['name']);
+  if(!foundProduct){
+    return foundProduct;
+  } else if ((productIndex) === -1) {
+    cart.push(foundProduct);
+    console.log('added a product');
+  } else {
+    cart[productIndex].quantity += 1;
+    console.log('Quantity Increase.' + cart[productIndex].quantity);
+  }
+  console.log(foundProduct.name);
+  return foundProduct;
+}
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
@@ -94,8 +109,20 @@ cart.push({name: "Cherry Kage test", price: 9.99, quantity: 2, productId: 99999,
   - cartTotal should return the total cost of the products in the cart
   Hint: price and quantity can be used to determine total cost
 */
+function cartTotal(){
+  // alert('CART TOTAL Engaged')
+  let totalCartAmount = 0;
+  cart.forEach(itemInCart => {
+    totalCartAmount += itemInCart.price * itemInCart.quantity;
+  })
+  return totalCartAmount;
+}
 
 /* Create a function called emptyCart that empties the products from the cart */
+function emptyCart(){
+  cart = [];
+  return cart;
+}
 
 /* Create a function named pay that takes in an amount as an argument
   - amount is the money paid by customer
