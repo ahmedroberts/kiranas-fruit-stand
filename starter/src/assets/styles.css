@@ -1,3 +1,4 @@
+@import url(styles-ahmed.css);
 * {
     font-family: 'Montserrat', sans-serif;
     padding: 0;
@@ -25,7 +26,7 @@ p {
 .checkout-container {
     max-width: 34em;
     padding: 2em;
-    background: #efefef;
+    /* background: #efefef; */
 }
 .products, .cart{
     display: flex;
@@ -33,7 +34,7 @@ p {
 }
 
 .products > div {
-    background: #f5f5f5;
+    /* background: #f5f5f5; */
     margin: 1em;
     padding: 2em;
 }

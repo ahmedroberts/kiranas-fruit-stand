@@ -1,0 +1,24 @@
+body {
+  background-color: azure;
+}
+.shopping-cart {
+  background-color: palegreen;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+.cart-container {
+  background-color: azure;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+
+.products-container {
+  background-color: azure;
+  padding: 1rem;
+}
+.checkout-container {
+  float: right;
+  background-color: azure;
+  padding: 1rem;
+}
