@@ -1,7 +1,5 @@
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
 
-
-
 const products = [];
 /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
@@ -22,7 +20,6 @@ const allAvailableProductsDB = [
 allAvailableProductsDB.forEach(availabeProduct => {
   products.push(availabeProduct);
 })
-
 
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
