@@ -24,14 +24,6 @@ allAvailableProductsDB.forEach(availabeProduct => {
 })
 
 
-function decreaseQuantity(){
-  // prompt('Who Goes There?!!');
-  return 'Take it down a peg.';
-}
-function removeProductFromCart(){
-  return 'Snap it is gone product.';
-}
-
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
    - orange.jpg by Mae Mu
@@ -69,6 +61,7 @@ function addProductToCart(productId){
   if(!foundProduct){
     return foundProduct;
   } else if ((productIndex) === -1) {
+    foundProduct.quantity = 1;
     cart.push(foundProduct);
     // console.log('added a product');
   } else {
@@ -97,12 +90,30 @@ function increaseQuantity(productId){
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
+function decreaseQuantity(productId){
+  // console.log('Down a peg?!!');
+  let currentProduct = getProduct(productId);
+  if (currentProduct.quantity > 1) {
+    currentProduct.quantity -= 1;
+  } else {
+    currentProduct.quantity = 0;
+    removeProductFromCart(productId);
+  }
+  return;
+}
 
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
+function removeProductFromCart(productId){
+  let currentProduct = getProduct(productId);
+  currentProduct.quantity = 1;
+  cart.splice(cart.indexOf(currentProduct), 1);
+  // console.log('Snap it is gone product.');
+  return;
+}
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
@@ -132,7 +143,7 @@ function emptyCart(){
   Hint: cartTotal function gives us cost of all the products in the cart  
 */
 function pay(amount){
-  let balance = amount - cartTotal();
+  let balance = parseFloat((amount - cartTotal()).toFixed(2));
   return balance;
 }
 
