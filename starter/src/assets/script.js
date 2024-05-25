@@ -13,9 +13,9 @@ const products = [];
 */
 
 const allAvailableProductsDB = [
-  {name: "3rd Raikage", price: 5.55, quantity: 1, productId: 1, image: "../images/strawberry.jpg"},
-  {name: "2nd Raikage", price: 9.99, quantity: 1, productId: 2, image: "../images/orange.jpg"},
-  {name: "1st Raikage", price: 8.88, quantity: 1, productId: 3, image: "../images/cherry.jpg"},
+  {name: "3rd Raikage", price: 5.55, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
+  {name: "2nd Raikage", price: 9.99, quantity: 0, productId: 2, image: "../images/orange.jpg"},
+  {name: "1st Raikage", price: 8.88, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
 ];
 
 // add all products and quantities to cart and products
@@ -32,7 +32,6 @@ allAvailableProductsDB.forEach(availabeProduct => {
 
 /* Declare an empty array named cart to hold the items in the cart */
 const cart = [];
-// cart.push({name: "Cherry Kage test", price: 9.99, quantity: 2, productId: 99999, image: "../images/cherry.jpg"}); // for testing DELETE FOR AHMED
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -54,21 +53,15 @@ const getProduct = (productId) => {
 function addProductToCart(productId){
   let foundProduct = getProduct(productId);
   let productIndex = cart.indexOf(foundProduct);
-  // console.log('1st productIndex ~~> ' + productIndex);
-  // productIndex = -1;
-  // console.log('Forced productIndex ==> ' + productIndex);
-  // console.log('pressed addPTC...' + foundProduct['name']);
   if(!foundProduct){
     return foundProduct;
   } else if ((productIndex) === -1) {
     foundProduct.quantity = 1;
     cart.push(foundProduct);
-    // console.log('added a product');
   } else {
     cart[productIndex].quantity += 1;
-    // console.log('Quantity Increase.' + cart[productIndex].quantity);
   }
-  console.log(foundProduct.name);
+  console.log(foundProduct.name);  // DELETE LATER AHMED <<<<<<<<<<<<<<<<<<<<<<<<<<
   return foundProduct;
 }
 
@@ -95,8 +88,9 @@ function decreaseQuantity(productId){
   let currentProduct = getProduct(productId);
   if (currentProduct.quantity > 1) {
     currentProduct.quantity -= 1;
+  } else if (currentProduct.quantity === 1) {
+    removeProductFromCart(productId);
   } else {
-    currentProduct.quantity = 0;
     removeProductFromCart(productId);
   }
   return;
@@ -109,7 +103,7 @@ function decreaseQuantity(productId){
 */
 function removeProductFromCart(productId){
   let currentProduct = getProduct(productId);
-  currentProduct.quantity = 1;
+  currentProduct.quantity = 0;
   cart.splice(cart.indexOf(currentProduct), 1);
   // console.log('Snap it is gone product.');
   return;
