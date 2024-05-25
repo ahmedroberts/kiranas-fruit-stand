@@ -13,9 +13,9 @@ const products = [];
 */
 
 const allAvailableProductsDB = [
-  {name: "3rd Raikage", price: 9.99, quantity: 1, productId: 1, image: "../images/strawberry.jpg"},
+  {name: "3rd Raikage", price: 5.55, quantity: 1, productId: 1, image: "../images/strawberry.jpg"},
   {name: "2nd Raikage", price: 9.99, quantity: 1, productId: 2, image: "../images/orange.jpg"},
-  {name: "1st Raikage", price: 9.99, quantity: 1, productId: 3, image: "../images/cherry.jpg"},
+  {name: "1st Raikage", price: 8.88, quantity: 1, productId: 3, image: "../images/cherry.jpg"},
 ];
 
 // add all products and quantities to cart and products
@@ -24,10 +24,6 @@ allAvailableProductsDB.forEach(availabeProduct => {
 })
 
 
-function increaseQuantity(){
-  // confirm('increase Quantity has been pressed');
-  return 'Kaazam ask and it shall be given';
-}
 function decreaseQuantity(){
   // prompt('Who Goes There?!!');
   return 'Take it down a peg.';
@@ -70,18 +66,18 @@ const getProduct = (productId) => {
 function addProductToCart(productId){
   let foundProduct = getProduct(productId);
   let productIndex = cart.indexOf(foundProduct);
-  console.log('1st productIndex ~~> ' + productIndex);
+  // console.log('1st productIndex ~~> ' + productIndex);
   // productIndex = -1;
-  console.log('Forced productIndex ==> ' + productIndex);
-  console.log('pressed addPTC...' + foundProduct['name']);
+  // console.log('Forced productIndex ==> ' + productIndex);
+  // console.log('pressed addPTC...' + foundProduct['name']);
   if(!foundProduct){
     return foundProduct;
   } else if ((productIndex) === -1) {
     cart.push(foundProduct);
-    console.log('added a product');
+    // console.log('added a product');
   } else {
     cart[productIndex].quantity += 1;
-    console.log('Quantity Increase.' + cart[productIndex].quantity);
+    // console.log('Quantity Increase.' + cart[productIndex].quantity);
   }
   console.log(foundProduct.name);
   return foundProduct;
@@ -91,6 +87,14 @@ function addProductToCart(productId){
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
+function increaseQuantity(productId){
+  // console.log('Kaazam ask and it shall be given');
+  // confirm('increase Quantity has been pressed');
+  let currentProduct = getProduct(productId);
+  currentProduct.quantity += 1;
+  // return currentProduct;
+  return;
+}
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
@@ -114,6 +118,7 @@ function cartTotal(){
   let totalCartAmount = 0;
   cart.forEach(itemInCart => {
     totalCartAmount += itemInCart.price * itemInCart.quantity;
+    totalCartAmount = parseFloat(totalCartAmount.toFixed(2));
   })
   return totalCartAmount;
 }
