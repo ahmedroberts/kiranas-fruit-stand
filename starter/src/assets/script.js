@@ -35,7 +35,7 @@ function increaseQuantity(){
 }
 function decreaseQuantity(){
   // prompt('Who Goes There?!!');
-  return 'Tanke it down a peg.';
+  return 'Take it down a peg.';
 }
 function removeProductFromCart(){
   return 'Snap it is gone product.';
