@@ -1,7 +1,5 @@
 /* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
 
-
-
 const products = [];
 /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
@@ -13,9 +11,9 @@ const products = [];
 */
 
 const allAvailableProductsDB = [
-  {name: "3rd Raikage", price: 5.55, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
-  {name: "2nd Raikage", price: 9.99, quantity: 0, productId: 2, image: "../images/orange.jpg"},
-  {name: "1st Raikage", price: 8.88, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
+  {name: "Sweet Strawberry", price: 5.55, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
+  {name: "Oh So Orange", price: 9.99, quantity: 0, productId: 2, image: "../images/orange.jpg"},
+  {name: "Cheeky Cherry", price: 8.88, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
 ];
 
 // add all products and quantities to cart and products
@@ -106,6 +104,14 @@ function removeProductFromCart(productId){
   return;
 }
 
+/* Create a function called emptyCart that empties the products from the cart */
+function emptyCart(){
+  while(cart.length > 0) {
+    cart.pop();
+  }
+  return cart;
+}
+
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
   - cartTotal should return the total cost of the products in the cart
@@ -120,17 +126,6 @@ function cartTotal(){
   return totalCartAmount;
 }
 
-/* Create a function called emptyCart that empties the products from the cart */
-function emptyCart(){
-  console.log('\tstart cart length: ', cart.length); //    DELETE LATER AHMED <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<s
-  while(cart.length > 0) {
-    cart.pop();
-    console.log(cart.length); //    DELETE LATER AHMED <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  }
-  console.log('\tend cart length: ', cart.length); //    DELETE LATER AHMED <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  return cart;
-}
-
 /* Create a function named pay that takes in an amount as an argument
   - amount is the money paid by customer
   - pay will return a negative number if there is a remaining balance
@@ -139,12 +134,18 @@ function emptyCart(){
 */
 let totalPaymentReceived = 0;
 function pay(amount){
-  totalPaymentReceived += amount;
-  let balance = parseFloat((cartTotal() - amount).toFixed(2));
+  totalPaymentReceived += parseFloat(amount);
+  console.log('\tCart Total: \t', totalCartAmount, '\n\tTotal Received:\t', totalPaymentReceived)
+  const balance = parseFloat((totalPaymentReceived - totalCartAmount).toFixed(2));
+
+  if (balance > 0) {
+    totalPaymentReceived = 0;
+  }
+
   return balance;
 }
-/* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
+/* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 /* The following is for running unit tests. 
    To fully complete this project, it is expected that all tests pass.
