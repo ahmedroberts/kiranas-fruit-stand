@@ -30,6 +30,14 @@ allAvailableProductsDB.forEach(availabeProduct => {
 
 /* Declare an empty array named cart to hold the items in the cart */
 const cart = [];
+let totalCartAmount = 0;
+let totalPaymentReceived = 0;
+
+
+function clearCart(){
+  totalCartAmount = 0;
+  totalPaymentReceived = 0;
+}
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -101,6 +109,7 @@ function removeProductFromCart(productId){
   let currentProduct = getProduct(productId);
   currentProduct.quantity = 0;
   cart.splice(cart.indexOf(currentProduct), 1);
+  clearCart();
   return;
 }
 
@@ -109,15 +118,16 @@ function emptyCart(){
   while(cart.length > 0) {
     cart.pop();
   }
+  clearCart();
   return cart;
 }
+
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
   - cartTotal should return the total cost of the products in the cart
   Hint: price and quantity can be used to determine total cost
 */
-let totalCartAmount = 0;
 function cartTotal(){
   cart.forEach(itemInCart => {
     totalCartAmount += itemInCart.price * itemInCart.quantity;
@@ -132,16 +142,13 @@ function cartTotal(){
   - pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  
 */
-let totalPaymentReceived = 0;
 function pay(amount){
   totalPaymentReceived += parseFloat(amount);
   console.log('\tCart Total: \t', totalCartAmount, '\n\tTotal Received:\t', totalPaymentReceived)
   const balance = parseFloat((totalPaymentReceived - totalCartAmount).toFixed(2));
-
   if (balance > 0) {
     totalPaymentReceived = 0;
   }
-
   return balance;
 }
 
