@@ -125,6 +125,7 @@ function emptyCart(){
   Hint: price and quantity can be used to determine total cost
 */
 function cartTotal(){
+  totalCartAmount = 0;
   cart.forEach(itemInCart => {
     totalCartAmount += itemInCart.price * itemInCart.quantity;
     totalCartAmount = parseFloat(totalCartAmount.toFixed(2));
