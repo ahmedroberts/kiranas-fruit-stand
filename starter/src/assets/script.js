@@ -21,7 +21,7 @@ const allAvailableProductsDB = [
   {name: "Sweet Strawberry X", price: 5.00, quantity: 0, productId: 4, image: "../images/strawberry.jpg"},
   {name: "Oh So Orange X",     price: 9.22, quantity: 0, productId: 5, image: "../images/orange.jpg"},
   {name: "Cheeky Cherry X",    price: 8.44, quantity: 0, productId: 6, image: "../images/cherry.jpg"},
-*/
+ end extra testing items */
 ];
 
 // add all products and quantities to cart and products
@@ -161,6 +161,7 @@ function clearCart(){
   totalPaymentReceived = 0;
   drawCleanCheckout();
 }
+
 /* The following is for running unit tests. 
    To fully complete this project, it is expected that all tests pass.
    Run the following command in terminal to run tests

@@ -53,3 +53,6 @@ form {
   background-color: azure;
   padding: .5rem;
 }
+.hide-this {
+  display: none;
+}
