@@ -7,13 +7,13 @@
 
 h1 {
     text-align: center;
-    padding: 1em;
+    padding: .25em;
 }
 h2, h3 {
-    padding: 1em 0 .5em;
+    padding: .25em 0 .25em;
 }
 p {
-    padding-bottom: 1em;
+    padding-bottom: .25em;
 }
 .products-container{
     width: 100%;

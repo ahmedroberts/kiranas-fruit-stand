@@ -11,16 +11,23 @@ const products = [];
 */
 
 const allAvailableProductsDB = [
-  {name: "Sweet Strawberry", price: 5.55, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
-  {name: "Oh So Orange", price: 9.99, quantity: 0, productId: 2, image: "../images/orange.jpg"},
-  {name: "Cheeky Cherry", price: 8.88, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
+  {name: "Sweet Strawberry",   price: 5.55, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
+  {name: "Oh So Orange",       price: 9.99, quantity: 0, productId: 2, image: "../images/orange.jpg"},
+  {name: "Cheeky Cherry",      price: 8.88, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
+/* more items for testing
+  {name: "Sweet Strawberry V", price: 5.77, quantity: 0, productId: 7, image: "../images/strawberry.jpg"},
+  {name: "Oh So Orange V",     price: 9.66, quantity: 0, productId: 8, image: "../images/orange.jpg"},
+  {name: "Cheeky Cherry V",    price: 8.33, quantity: 0, productId: 9, image: "../images/cherry.jpg"},
+  {name: "Sweet Strawberry X", price: 5.00, quantity: 0, productId: 4, image: "../images/strawberry.jpg"},
+  {name: "Oh So Orange X",     price: 9.22, quantity: 0, productId: 5, image: "../images/orange.jpg"},
+  {name: "Cheeky Cherry X",    price: 8.44, quantity: 0, productId: 6, image: "../images/cherry.jpg"},
+*/
 ];
 
 // add all products and quantities to cart and products
 allAvailableProductsDB.forEach(availabeProduct => {
   products.push(availabeProduct);
 })
-
 
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
@@ -32,12 +39,6 @@ allAvailableProductsDB.forEach(availabeProduct => {
 const cart = [];
 let totalCartAmount = 0;
 let totalPaymentReceived = 0;
-
-
-function clearCart(){
-  totalCartAmount = 0;
-  totalPaymentReceived = 0;
-}
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -75,8 +76,6 @@ function addProductToCart(productId){
   - increaseQuantity should then increase the product's quantity
 */
 function increaseQuantity(productId){
-  // console.log('Kaazam ask and it shall be given');
-  // confirm('increase Quantity has been pressed');
   let currentProduct = getProduct(productId);
   currentProduct.quantity += 1;
   return;
@@ -88,7 +87,6 @@ function increaseQuantity(productId){
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
 function decreaseQuantity(productId){
-  // console.log('Down a peg?!!');
   let currentProduct = getProduct(productId);
   if (currentProduct.quantity > 1) {
     currentProduct.quantity -= 1;
@@ -109,7 +107,6 @@ function removeProductFromCart(productId){
   let currentProduct = getProduct(productId);
   currentProduct.quantity = 0;
   cart.splice(cart.indexOf(currentProduct), 1);
-  clearCart();
   return;
 }
 
@@ -121,7 +118,6 @@ function emptyCart(){
   clearCart();
   return cart;
 }
-
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total cost of all products
@@ -144,7 +140,6 @@ function cartTotal(){
 */
 function pay(amount){
   totalPaymentReceived += parseFloat(amount);
-  console.log('\tCart Total: \t', totalCartAmount, '\n\tTotal Received:\t', totalPaymentReceived)
   const balance = parseFloat((totalPaymentReceived - totalCartAmount).toFixed(2));
   if (balance > 0) {
     totalPaymentReceived = 0;
@@ -154,6 +149,18 @@ function pay(amount){
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
+// Draws a clean checkout checkout
+function drawCleanCheckout() {
+  let receiptDetails = document.querySelector('.pay-summary');
+  receiptDetails.innerHTML = "";
+}
+
+// Resets the running totals and calls drawCleanCheckout()
+function clearCart(){
+  totalCartAmount = 0;
+  totalPaymentReceived = 0;
+  drawCleanCheckout();
+}
 /* The following is for running unit tests. 
    To fully complete this project, it is expected that all tests pass.
    Run the following command in terminal to run tests
