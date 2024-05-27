@@ -11,9 +11,9 @@ const products = [];
 */
 
 const allAvailableProductsDB = [
-  {name: "Sweet Strawberry",   price: 5.55, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
-  {name: "Oh So Orange",       price: 9.99, quantity: 0, productId: 2, image: "../images/orange.jpg"},
-  {name: "Cheeky Cherry",      price: 8.88, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
+  {name: "Sweet Strawberry",   price: 7, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
+  {name: "Oh So Orange",       price: 6, quantity: 0, productId: 2, image: "../images/orange.jpg"},
+  {name: "Cheeky Cherry",      price: 5, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
 /* more items for testing
   {name: "Sweet Strawberry V", price: 5.77, quantity: 0, productId: 7, image: "../images/strawberry.jpg"},
   {name: "Oh So Orange V",     price: 9.66, quantity: 0, productId: 8, image: "../images/orange.jpg"},
@@ -128,7 +128,6 @@ function cartTotal(){
   totalCartAmount = 0;
   cart.forEach(itemInCart => {
     totalCartAmount += itemInCart.price * itemInCart.quantity;
-    totalCartAmount = parseFloat(totalCartAmount.toFixed(2));
   })
   return totalCartAmount;
 }
@@ -141,7 +140,7 @@ function cartTotal(){
 */
 function pay(amount){
   totalPaymentReceived += parseFloat(amount);
-  const balance = parseFloat((totalPaymentReceived - totalCartAmount).toFixed(2));
+  const balance = totalPaymentReceived - totalCartAmount;
   if (balance > 0) {
     totalPaymentReceived = 0;
   }
