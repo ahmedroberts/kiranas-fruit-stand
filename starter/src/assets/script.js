@@ -1,68 +1,72 @@
-/* Create an array named products which you will use to add all of your product object literals that you create in the next step. */
-
-const products = [];
-/* Create 3 or more product objects using object literal notation 
-   Each product should include five properties
-   - name: name of product (string)
-   - price: price of product (number)
-   - quantity: quantity in cart should start at zero (number)
-   - productId: unique id for the product (number)
-   - image: picture of product (url string)
-*/
-
-const allAvailableProductsDB = [
-  {name: "Sweet Strawberry",   price: 7, quantity: 0, productId: 1, image: "../images/strawberry.jpg"},
-  {name: "Oh So Orange",       price: 6, quantity: 0, productId: 2, image: "../images/orange.jpg"},
-  {name: "Cheeky Cherry",      price: 5, quantity: 0, productId: 3, image: "../images/cherry.jpg"},
-/* more items for testing
-  {name: "Sweet Strawberry V", price: 5.77, quantity: 0, productId: 7, image: "../images/strawberry.jpg"},
-  {name: "Oh So Orange V",     price: 9.66, quantity: 0, productId: 8, image: "../images/orange.jpg"},
-  {name: "Cheeky Cherry V",    price: 8.33, quantity: 0, productId: 9, image: "../images/cherry.jpg"},
-  {name: "Sweet Strawberry X", price: 5.00, quantity: 0, productId: 4, image: "../images/strawberry.jpg"},
-  {name: "Oh So Orange X",     price: 9.22, quantity: 0, productId: 5, image: "../images/orange.jpg"},
-  {name: "Cheeky Cherry X",    price: 8.44, quantity: 0, productId: 6, image: "../images/cherry.jpg"},
- end extra testing items */
+// Array named `products` holding product object literals
+const products = [
+  {
+    name: "Sweet Strawberry",
+    price: 7,
+    quantity: 0,
+    productId: 1,
+    image: "../images/strawberry.jpg",
+  },
+  {
+    name: "Oh So Orange",
+    price: 6,
+    quantity: 0,
+    productId: 2,
+    image: "../images/orange.jpg",
+  },
+  {
+    name: "Cheeky Cherry",
+    price: 5,
+    quantity: 0,
+    productId: 3,
+    image: "../images/cherry.jpg",
+  },
 ];
 
-// add all products and quantities to cart and products
-allAvailableProductsDB.forEach(availabeProduct => {
-  products.push(availabeProduct);
-})
-
-/* Images provided in /images folder. All images from Unsplash.com
-   - cherry.jpg by Mae Mu
-   - orange.jpg by Mae Mu
-   - strawberry.jpg by Allec Gomes
-*/
-
-/* Declare an empty array named cart to hold the items in the cart */
+// Array to hold product objects currently in the `cart` shopping cart
 const cart = [];
+
+// global variable to track total cost of items in `cart`
 let totalCartAmount = 0;
+
+// global variable to trak total amount of payment received
 let totalPaymentReceived = 0;
 
-/* Create a function named addProductToCart that takes in the product productId as an argument
-  - addProductToCart should get the correct product based on the productId
-  - addProductToCart should then increase the product's quantity
-  - if the product is not already in the cart, add it to the cart
-*/
+// ========================================================================================================================
+// Functions
+// ========================================================================================================================
 
-// utility to find an individual product in products
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * Find and retrieve a product based on the product ID.
+ * @param {number} productId
+ * @returns {object} the product withthat product ID.
+ */
 const getProduct = (productId) => {
   let foundProduct;
-  products.forEach(product => {
+  products.forEach((product) => {
     if (product.productId === productId) {
-    foundProduct = product;
-  }
-});
+      foundProduct = product;
+    }
+  });
   return foundProduct;
-}
+};
 
-function addProductToCart(productId){
-  let foundProduct = getProduct(productId);
-  let productIndex = cart.indexOf(foundProduct);
-  if(!foundProduct){
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * Add product to `cart` based on product ID.
+ * - gets the correct product
+ * - if that product is not in cart it adds that product
+ * - if product is already in cart it increases the quantity by 1
+ * @param {number} productId
+ * @returns {object} product or undefined
+ */
+function addProductToCart(productId) {
+  const foundProduct = getProduct(productId);
+  const productIndex = cart.indexOf(foundProduct);
+  if (!foundProduct) {
     return foundProduct;
-  } else if ((productIndex) === -1) {
+  } else if (productIndex === -1) {
     foundProduct.quantity = 1;
     cart.push(foundProduct);
   } else {
@@ -71,23 +75,25 @@ function addProductToCart(productId){
   return foundProduct;
 }
 
-/* Create a function named increaseQuantity that takes in the productId as an argument
-  - increaseQuantity should get the correct product based on the productId
-  - increaseQuantity should then increase the product's quantity
-*/
-function increaseQuantity(productId){
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * Finds the correct product based on product ID.
+ * - increases the quantity property by 1
+ * @param {number} productId
+ */
+function increaseQuantity(productId) {
   let currentProduct = getProduct(productId);
   currentProduct.quantity += 1;
-  return;
 }
 
-/* Create a function named decreaseQuantity that takes in the productId as an argument
-  - decreaseQuantity should get the correct product based on the productId
-  - decreaseQuantity should decrease the quantity of the product
-  - if the function decreases the quantity to 0, the product is removed from the cart
-*/
-function decreaseQuantity(productId){
-  let currentProduct = getProduct(productId);
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * Finds the correct product based on product ID.
+ * - decreases the quantity property by 1
+ * @param {number} productId
+ */
+function decreaseQuantity(productId) {
+  const currentProduct = getProduct(productId);
   if (currentProduct.quantity > 1) {
     currentProduct.quantity -= 1;
   } else if (currentProduct.quantity === 1) {
@@ -95,50 +101,56 @@ function decreaseQuantity(productId){
   } else {
     removeProductFromCart(productId);
   }
-  return;
 }
 
-/* Create a function named removeProductFromCart that takes in the productId as an argument
-  - removeProductFromCart should get the correct product based on the productId
-  - removeProductFromCart should update the product quantity to 0
-  - removeProductFromCart should remove the product from the cart
-*/
-function removeProductFromCart(productId){
-  let currentProduct = getProduct(productId);
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * selects product based on product id
+ * - sets the value of quantity to 0
+ * - removes selected product from `cart`
+ * @param {number} productId
+ */
+function removeProductFromCart(productId) {
+  const currentProduct = getProduct(productId);
   currentProduct.quantity = 0;
   cart.splice(cart.indexOf(currentProduct), 1);
-  return;
 }
 
-/* Create a function called emptyCart that empties the products from the cart */
-function emptyCart(){
-  while(cart.length > 0) {
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * iterates through, and empties `cart`
+ * - pops last element form array until all elements removed
+ * @returns {array} cart
+ */
+function emptyCart() {
+  while (cart.length > 0) {
     cart.pop();
   }
   clearCart();
   return cart;
 }
 
-/* Create a function named cartTotal that has no parameters
-  - cartTotal should iterate through the cart to get the total cost of all products
-  - cartTotal should return the total cost of the products in the cart
-  Hint: price and quantity can be used to determine total cost
-*/
-function cartTotal(){
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * calculates total value of cart
+ * multiples each element in `cart` price by quantity the sums the values
+ * @returns {number} value of all items in cart
+ */
+function cartTotal() {
   totalCartAmount = 0;
-  cart.forEach(itemInCart => {
+  cart.forEach((itemInCart) => {
     totalCartAmount += itemInCart.price * itemInCart.quantity;
-  })
+  });
   return totalCartAmount;
 }
 
-/* Create a function named pay that takes in an amount as an argument
-  - amount is the money paid by customer
-  - pay will return a negative number if there is a remaining balance
-  - pay will return a positive number if money should be returned to customer
-  Hint: cartTotal function gives us cost of all the products in the cart  
-*/
-function pay(amount){
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * 
+ * @param {number} amount 
+ * @returns 
+ */
+function pay(amount) {
   totalPaymentReceived += parseFloat(amount);
   const balance = totalPaymentReceived - totalCartAmount;
   if (balance > 0) {
@@ -149,35 +161,46 @@ function pay(amount){
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
-// Draws a clean checkout checkout
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * Clears the .pay-summary of any appended divs that exist.
+ */
 function drawCleanCheckout() {
-  let receiptDetails = document.querySelector('.pay-summary');
+  let receiptDetails = document.querySelector(".pay-summary");
   receiptDetails.innerHTML = "";
 }
 
-// Resets the running totals and calls drawCleanCheckout()
-function clearCart(){
+// ------------------------------------------------------------------------------------------------------------------------
+/**
+ * Resets the running totals of payments and cart amount; 
+ * - then calls drawCleanCheckout().
+ */
+function clearCart() {
   totalCartAmount = 0;
   totalPaymentReceived = 0;
   drawCleanCheckout();
 }
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+// ========================================================================================================================
+// ========================================================================================================================
 
 /* The following is for running unit tests. 
    To fully complete this project, it is expected that all tests pass.
    Run the following command in terminal to run tests
    npm run test
 */
-
 module.exports = {
-   products,
-   cart,
-   addProductToCart,
-   increaseQuantity,
-   decreaseQuantity,
-   removeProductFromCart,
-   cartTotal,
-   pay, 
-   emptyCart,
-   /* Uncomment the following line if completing the currency converter bonus */
-   // currency
-}
+  products,
+  cart,
+  addProductToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeProductFromCart,
+  cartTotal,
+  pay,
+  emptyCart,
+  /* Uncomment the following line if completing the currency converter bonus */
+  // currency
+};
